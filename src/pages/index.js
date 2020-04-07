@@ -1,12 +1,9 @@
-import React from "react"
-import { Link } from "gatsby"
-
-import Layout from "../components/layout"
-import Image from "../components/image"
-import SEO from "../components/seo"
+import React, {useState} from "react"
 import "./style.css"
 
-const IndexPage = () => (
+const IndexPage = () => {
+  const [inputValue, setInputValue] = useState("https://www.google.com");
+return (
   <div>
     <div className="container">
       <h2>API Project: URL Shortener Microservice</h2>
@@ -17,7 +14,7 @@ const IndexPage = () => (
           will receive a shortened URL in the JSON response.
           <br />
           Example :{" "}
-          <code>{'{"original_url":"www.google.com","short_url":1}'}</code>
+          <code>{'{"original_url":"https://www.google.com","short_url":1}'}</code>
         </li>
         <li>
           If I pass an invalid URL that doesn't follow the{" "}
@@ -42,17 +39,19 @@ const IndexPage = () => (
           id="url_input"
           type="text"
           name="url"
-          value="https://www.google.com"
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
         />
         <input type="submit" value="POST URL" />
       </form>
       <h3>Example Usage:</h3>
-      <a href="/api/shorturl/3">https://flask-url-shortener.andrew-horn-portfolio.life/api/shorturl/3</a>
+      <a href="https://flask-url-shortener.andrew-horn-portfolio.life/api/shorturl/3">https://flask-url-shortener.andrew-horn-portfolio.life/api/shorturl/3</a>
 
       <h3>Will Redirect to:</h3>
       <p>https://www.washingtonpost.com</p>
     </div>
   </div>
 )
+}
 
 export default IndexPage
